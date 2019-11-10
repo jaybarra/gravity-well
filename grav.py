@@ -78,7 +78,7 @@ while run:
             r = sqrt(pow(dx,2) +pow(dy,2))
            
             # apply no force if already touching
-            if (p.size + other.size) / 2 > r:
+            if (p.size + other.size) > r:
                 continue 
 
             f = mass_component / pow(r, 2)
