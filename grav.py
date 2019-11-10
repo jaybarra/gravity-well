@@ -42,10 +42,11 @@ class Particle:
 
 particles = []
 for x in range(99):
-    particles.append(Particle(mass=rrandom(1,100), size=rrandom(1, 10), location=(rrandom(0, screen_w), rrandom(0, screen_h ))))
+    particles.append(Particle(mass=rrandom(1,10000), size=rrandom(1, 10), location=(rrandom(0, screen_w), rrandom(0, screen_h ))))
 
 #CONSTANTS
-G = 6.67384e-11
+#G = 6.67384e-11
+G = 1e-3
 
 # main loop
 run = True
@@ -58,24 +59,23 @@ while run:
     # refresh screen
     screen.fill(WHITE)
     w, h = pygame.display.get_surface().get_size()
-    #pygame.draw.line(screen, BLACK, (w / 2, 0), (w / 2, h), 3)
-    #pygame.draw.line(screen, BLACK, (0, h / 2), (w, h/2), 3)
 
     # draw shapes
     for p in particles:
         f_x = 0.0
         f_y = 0.0
 
+        # TODO hold updates till the end and apply then, particles are being updated now before others
         for other in particles:
             if p is other:
                 continue
 
             mass_component = G * p.mass * other.mass
 
-            dx = pow(p.location[0] - other.location[0], 2)
-            dy = pow(p.location[1] - other.location[1], 2)
+            dx = p.location[0] - other.location[0]
+            dy = p.location[1] - other.location[1]
             
-            r = sqrt(dx + dy)
+            r = sqrt(pow(dx,2) +pow(dy,2))
            
             # apply no force if already touching
             if (p.size + other.size) / 2 > r:
@@ -83,6 +83,7 @@ while run:
 
             f = mass_component / pow(r, 2)
 
+            # subtract, gravity is attractive
             f_x -= f * dx / r
             f_y -= f * dy / r
 
