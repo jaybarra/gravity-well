@@ -97,10 +97,12 @@ while run:
         p.velocity = (v_x - p.velocity[0], v_y - p.velocity[1])
         
         # update location
-        # TODO check for collisions even if the delta is large, otherwise particles will clip through each other
+        # TODO check for collisions even if the delta is large, otherwise particles could clip through each other
+
+        normal_red = (10000 - p.mass) / 10000 * 255
         p.location = ((p.location[0] + v_x) % w, (p.location[1] + v_y) % h)
 
-        pygame.draw.circle(screen, RED, (int(p.location[0]),int(p.location[1])) , p.size)
+        pygame.draw.circle(screen, (normal_red, 0, 0), (int(p.location[0]),int(p.location[1])) , p.size)
    
         
     pygame.display.update()
