@@ -42,11 +42,10 @@ class Particle:
 
 particles = []
 for x in range(99):
-    particles.append(Particle(mass=rrandom(1,5), size=rrandom(1, 10), location=(rrandom(0, screen_w), rrandom(0, screen_h ))))
+    particles.append(Particle(mass=rrandom(1,100), size=rrandom(1, 10), location=(rrandom(0, screen_w), rrandom(0, screen_h ))))
 
 #CONSTANTS
-#G = 6.67384e-11
-G = 5
+G = 6.67384e-11
 
 # main loop
 run = True
@@ -79,8 +78,7 @@ while run:
             r = sqrt(dx + dy)
            
             # apply no force if already touching
-            if (p.size + other.size) > r:
-                print("touching {} {} {}".format(p.size, other.size, r))
+            if (p.size + other.size) / 2 > r:
                 continue 
 
             f = mass_component / pow(r, 2)
