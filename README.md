@@ -16,5 +16,5 @@ python grav.py
 ## Controls
 |Key|Command|
 |---|:-----:|
-|r| Reset the locations|
+|r| Randomize the locations|
 
