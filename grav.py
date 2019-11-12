@@ -21,7 +21,7 @@ min_size = 1
 
 #CONSTANTS
 #G = 6.67384e-11
-G = 1e-3
+G = 1e-2
 
 # COLORS
 WHITE = (255, 255, 255)
@@ -67,6 +67,9 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.KEYDOWN and event.key == 114: #R - reset
+            for p in particles:
+                p.location = (rrandom(0, screen_w), rrandom(0, screen_h))
    
     # refresh screen
     screen.fill(WHITE)
@@ -111,11 +114,11 @@ while run:
         # update location
         # TODO check for collisions even if the delta is large, otherwise particles could clip through each other
 
-        normal_red = int((p.mass) / 10000.0 * 255.0)
+        normal_red = int((p.mass) / max_mass * 255.0)
         p.location = ((p.location[0] + v_x) % w, (p.location[1] + v_y) % h)
 
         pygame.draw.circle(screen, (normal_red, 0, 0), (int(p.location[0]),int(p.location[1])) , p.size)
-   
+
         
     pygame.display.update()
 

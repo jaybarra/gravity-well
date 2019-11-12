@@ -1,4 +1,4 @@
-# Gravity Sim
+# Gravity-Well
 
 Basic gravity sim using pyGame
 
