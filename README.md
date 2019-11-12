@@ -13,3 +13,8 @@ pip install -r requirements.txt
 python grav.py
 ```
 
+## Controls
+|Key|Command|
+|---|:-----:|
+|r| Reset the locations|
+
