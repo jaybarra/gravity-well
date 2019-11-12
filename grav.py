@@ -10,7 +10,20 @@ screen = pygame.display.set_mode((800,600))
 
 pygame.display.set_caption("Gravity Well")
 
-# colors
+# SETTINGS
+num_particles = 99
+
+max_mass = 1e4
+min_mass = 1
+
+max_size = 10
+min_size = 1
+
+#CONSTANTS
+#G = 6.67384e-11
+G = 1e-3
+
+# COLORS
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -40,14 +53,11 @@ class Particle:
         )
 
 
+# INITIALIZATION
+
 particles = []
-for x in range(99):
-    particles.append(Particle(mass=rrandom(1,10000), size=rrandom(1, 10), location=(rrandom(0, screen_w), rrandom(0, screen_h ))))
-
-#CONSTANTS
-#G = 6.67384e-11
-G = 1e-3
-
+for x in range(num_particles):
+    particles.append(Particle(mass=rrandom(min_mass,max_mass), size=rrandom(min_size, max_size), location=(rrandom(0, screen_w), rrandom(0, screen_h ))))
 
 
 # main loop
